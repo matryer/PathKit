@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0509AA5E18C544C600C43E15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0509AA5D18C544C600C43E15 /* Foundation.framework */; };
-		0509AA6318C544C600C43E15 /* PathKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0509AA6218C544C600C43E15 /* PathKit.h */; };
-		0509AA6518C544C600C43E15 /* PathKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA6418C544C600C43E15 /* PathKit.m */; };
 		0509AA6C18C544C600C43E15 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0509AA6B18C544C600C43E15 /* XCTest.framework */; };
 		0509AA6D18C544C600C43E15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0509AA5D18C544C600C43E15 /* Foundation.framework */; };
 		0509AA6F18C544C600C43E15 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0509AA6E18C544C600C43E15 /* UIKit.framework */; };
 		0509AA7218C544C600C43E15 /* libPathKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0509AA5A18C544C600C43E15 /* libPathKit.a */; };
 		0509AA7818C544C600C43E15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0509AA7618C544C600C43E15 /* InfoPlist.strings */; };
-		0509AA7A18C544C600C43E15 /* PathKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA7918C544C600C43E15 /* PathKitTests.m */; };
+		0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA7918C544C600C43E15 /* PKPathTests.m */; };
+		0509AA8518C546F500C43E15 /* PKPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA8418C546F500C43E15 /* PKPath.m */; };
+		05B3327F18C557DE00956A79 /* PKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3327E18C557DE00956A79 /* PKPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +26,20 @@
 			remoteGlobalIDString = 0509AA5918C544C600C43E15;
 			remoteInfo = PathKit;
 		};
+		05B332D118C55AB900956A79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05B3328A18C55AB700956A79;
+			remoteInfo = PathKitExample;
+		};
+		05B332D318C55AB900956A79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05B332B518C55AB800956A79;
+			remoteInfo = PathKitExampleTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,7 +49,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				0509AA6318C544C600C43E15 /* PathKit.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,14 +58,19 @@
 		0509AA5A18C544C600C43E15 /* libPathKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPathKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0509AA5D18C544C600C43E15 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0509AA6118C544C600C43E15 /* PathKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PathKit-Prefix.pch"; sourceTree = "<group>"; };
-		0509AA6218C544C600C43E15 /* PathKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathKit.h; sourceTree = "<group>"; };
-		0509AA6418C544C600C43E15 /* PathKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathKit.m; sourceTree = "<group>"; };
 		0509AA6A18C544C600C43E15 /* PathKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0509AA6B18C544C600C43E15 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0509AA6E18C544C600C43E15 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		0509AA7518C544C600C43E15 /* PathKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PathKitTests-Info.plist"; sourceTree = "<group>"; };
 		0509AA7718C544C600C43E15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0509AA7918C544C600C43E15 /* PathKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathKitTests.m; sourceTree = "<group>"; };
+		0509AA7918C544C600C43E15 /* PKPathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKPathTests.m; sourceTree = "<group>"; };
+		0509AA8318C546F500C43E15 /* PKPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPath.h; sourceTree = "<group>"; };
+		0509AA8418C546F500C43E15 /* PKPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPath.m; sourceTree = "<group>"; };
+		05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathChangedBlock.h; sourceTree = "<group>"; };
+		05B3327D18C557DE00956A79 /* PKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPoint.h; sourceTree = "<group>"; };
+		05B3327E18C557DE00956A79 /* PKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPoint.m; sourceTree = "<group>"; };
+		05B3328018C5589E00956A79 /* PKPathKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathKit.h; sourceTree = "<group>"; };
+		05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PathKitExample.xcodeproj; path = PathKitExample/PathKitExample.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +99,7 @@
 		0509AA5118C544C600C43E15 = {
 			isa = PBXGroup;
 			children = (
+				05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */,
 				0509AA5F18C544C600C43E15 /* PathKit */,
 				0509AA7318C544C600C43E15 /* PathKitTests */,
 				0509AA5C18C544C600C43E15 /* Frameworks */,
@@ -110,9 +129,12 @@
 		0509AA5F18C544C600C43E15 /* PathKit */ = {
 			isa = PBXGroup;
 			children = (
-				0509AA6218C544C600C43E15 /* PathKit.h */,
-				0509AA6418C544C600C43E15 /* PathKit.m */,
 				0509AA6018C544C600C43E15 /* Supporting Files */,
+				0509AA8318C546F500C43E15 /* PKPath.h */,
+				0509AA8418C546F500C43E15 /* PKPath.m */,
+				05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */,
+				05B3327D18C557DE00956A79 /* PKPoint.h */,
+				05B3327E18C557DE00956A79 /* PKPoint.m */,
 			);
 			path = PathKit;
 			sourceTree = "<group>";
@@ -120,6 +142,7 @@
 		0509AA6018C544C600C43E15 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05B3328018C5589E00956A79 /* PKPathKit.h */,
 				0509AA6118C544C600C43E15 /* PathKit-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -128,7 +151,7 @@
 		0509AA7318C544C600C43E15 /* PathKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0509AA7918C544C600C43E15 /* PathKitTests.m */,
+				0509AA7918C544C600C43E15 /* PKPathTests.m */,
 				0509AA7418C544C600C43E15 /* Supporting Files */,
 			);
 			path = PathKitTests;
@@ -141,6 +164,15 @@
 				0509AA7618C544C600C43E15 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05B332CD18C55AB800956A79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05B332D218C55AB900956A79 /* PathKitExample.app */,
+				05B332D418C55AB900956A79 /* PathKitExampleTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +232,12 @@
 			mainGroup = 0509AA5118C544C600C43E15;
 			productRefGroup = 0509AA5B18C544C600C43E15 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 05B332CD18C55AB800956A79 /* Products */;
+					ProjectRef = 05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0509AA5918C544C600C43E15 /* PathKit */,
@@ -207,6 +245,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		05B332D218C55AB900956A79 /* PathKitExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PathKitExample.app;
+			remoteRef = 05B332D118C55AB900956A79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		05B332D418C55AB900956A79 /* PathKitExampleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PathKitExampleTests.xctest;
+			remoteRef = 05B332D318C55AB900956A79 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0509AA6818C544C600C43E15 /* Resources */ = {
@@ -224,7 +279,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0509AA6518C544C600C43E15 /* PathKit.m in Sources */,
+				0509AA8518C546F500C43E15 /* PKPath.m in Sources */,
+				05B3327F18C557DE00956A79 /* PKPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0509AA7A18C544C600C43E15 /* PathKitTests.m in Sources */,
+				0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +465,7 @@
 				0509AA7F18C544C600C43E15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0509AA8018C544C600C43E15 /* Build configuration list for PBXNativeTarget "PathKitTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +474,7 @@
 				0509AA8218C544C600C43E15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
