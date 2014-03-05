@@ -100,8 +100,8 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
         CGFloat targetX = _lastPoint.x + (self.tolerance.width * factor.width);
         CGFloat targetY = _lastPoint.y + (self.tolerance.height * factor.height);
         
-        NSLog(@"move: %g x %g", moveX, moveY);
-        NSLog(@"target: %g x %g", targetX, targetY);
+        //NSLog(@"move: %g x %g", moveX, moveY);
+        //NSLog(@"target: %g x %g", targetX, targetY);
         
         PKPoint *current = [_lastPoint copy];
         while (current.x != targetX || current.y != targetY) {
@@ -145,9 +145,9 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
         
       }
       
-    } else {
-      NSLog(@"Zero factor - ignoring");
-    }
+    }// else {
+      //NSLog(@"Zero factor - ignoring");
+    //}
     
   }
   
