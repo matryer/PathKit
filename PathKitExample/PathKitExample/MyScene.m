@@ -64,6 +64,7 @@
     
   }];
   [self.path setUseToleranceAsMaximumDistance:YES];
+  [self.path setSnapStartPointToTolerance:YES];
   
 }
 
