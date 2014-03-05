@@ -98,6 +98,17 @@
 
 }
 
+- (void) testSetSnapStartPointToTolerance {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:nil];
+  [path setSnapStartPointToTolerance:YES];
+  [path addPoint:PKPointMake(12, 18)];
+  
+  XCTAssertEqual(path.startPoint.x, (CGFloat)10, @"startPoint.x");
+  XCTAssertEqual(path.startPoint.y, (CGFloat)20, @"startPoint.y");
+  
+}
+
 - (void) testAddPointWithDistantPoints {
   
   //

@@ -73,6 +73,10 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   if ([self.thePoints count] == 0) {
     // first point
     
+    if (self.snapStartPointToTolerance) {
+      point = PKPointMake(_tolerance.width * floor((point.x / _tolerance.width) + 0.5), _tolerance.height * floor((point.y / _tolerance.height) + 0.5));
+    }
+    
     _startPoint = _lastPoint = [point copy];
     shouldCallBlock = YES;
     [self actuallyAddPoint:point];

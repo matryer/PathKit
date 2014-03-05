@@ -23,6 +23,7 @@ typedef CGSize PKTolerance;
 @property (strong, readonly) PKPoint *lastPoint;
 @property (strong, readonly) NSArray *points;
 @property (assign, readwrite) BOOL useToleranceAsMaximumDistance;
+@property (assign, readwrite) BOOL snapStartPointToTolerance;
 
 - (id) initWithTolerance:(PKTolerance)tolerance;
 
