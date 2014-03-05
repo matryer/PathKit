@@ -15,6 +15,7 @@
 		0509AA7818C544C600C43E15 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0509AA7618C544C600C43E15 /* InfoPlist.strings */; };
 		0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA7918C544C600C43E15 /* PKPathTests.m */; };
 		0509AA8518C546F500C43E15 /* PKPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0509AA8418C546F500C43E15 /* PKPath.m */; };
+		0526805318C7BDB0008E2F6E /* PKPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526805218C7BDB0008E2F6E /* PKPointTests.m */; };
 		05B3327F18C557DE00956A79 /* PKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3327E18C557DE00956A79 /* PKPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -32,13 +33,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 05B3328A18C55AB700956A79;
 			remoteInfo = PathKitExample;
-		};
-		05B332D318C55AB900956A79 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 05B332CC18C55AB800956A79 /* PathKitExample.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 05B332B518C55AB800956A79;
-			remoteInfo = PathKitExampleTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -66,6 +60,7 @@
 		0509AA7918C544C600C43E15 /* PKPathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKPathTests.m; sourceTree = "<group>"; };
 		0509AA8318C546F500C43E15 /* PKPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPath.h; sourceTree = "<group>"; };
 		0509AA8418C546F500C43E15 /* PKPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPath.m; sourceTree = "<group>"; };
+		0526805218C7BDB0008E2F6E /* PKPointTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPointTests.m; sourceTree = "<group>"; };
 		05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathChangedBlock.h; sourceTree = "<group>"; };
 		05B3327D18C557DE00956A79 /* PKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPoint.h; sourceTree = "<group>"; };
 		05B3327E18C557DE00956A79 /* PKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPoint.m; sourceTree = "<group>"; };
@@ -152,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				0509AA7918C544C600C43E15 /* PKPathTests.m */,
+				0526805218C7BDB0008E2F6E /* PKPointTests.m */,
 				0509AA7418C544C600C43E15 /* Supporting Files */,
 			);
 			path = PathKitTests;
@@ -170,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				05B332D218C55AB900956A79 /* PathKitExample.app */,
-				05B332D418C55AB900956A79 /* PathKitExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,13 +249,6 @@
 			remoteRef = 05B332D118C55AB900956A79 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		05B332D418C55AB900956A79 /* PathKitExampleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PathKitExampleTests.xctest;
-			remoteRef = 05B332D318C55AB900956A79 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -289,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */,
+				0526805318C7BDB0008E2F6E /* PKPointTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

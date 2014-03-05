@@ -15,9 +15,12 @@
 
 @implementation PKPath
 
+BOOL _useToleranceAsMaximumDistanceBusy = NO;
+
 - (id) initWithTolerance:(CGSize)tolerance {
   if (self = [super init]) {
     _tolerance = tolerance;
+    _useToleranceAsMaximumDistance = NO;
   }
   return self;
 }
@@ -62,22 +65,88 @@
 
 - (BOOL) addPoint:(PKPoint *)point {
   
+  // ignore points if we're still working
+  if (_useToleranceAsMaximumDistanceBusy) return NO;
+  
   BOOL shouldCallBlock = NO;
   
   if ([self.thePoints count] == 0) {
-    _startPoint = _lastPoint = point;
+    // first point
+    
+    _startPoint = _lastPoint = [point copy];
     shouldCallBlock = YES;
     [self actuallyAddPoint:point];
+    
   } else {
+    // subsequent points
     
     PKDelta delta = [PKPath deltaFromPoint:_lastPoint toPoint:point];
     PKDeltaFactor factor = [PKPath factorForDelta:delta perTolerance:self.tolerance];
     
     if (![PKPath isZeroFactor:factor]) {
-      NSLog(@"Delta: %g x %g, Factor: %g x %g, Tolerance: %g x %g", delta.width, delta.height, factor.width, factor.height, self.tolerance.width, self.tolerance.height);
-      _lastPoint = point;
+      
+      // this will be an update
       shouldCallBlock = YES;
-      [self actuallyAddPoint:point];
+      
+      if (self.useToleranceAsMaximumDistance) {
+        _useToleranceAsMaximumDistanceBusy = YES;
+        
+        BOOL xIsPos = delta.width >= 0 ? YES : NO;
+        BOOL yIsPos = delta.width >= 0 ? YES : NO;
+        
+        // iterate over the delta until we reach the target point
+        CGFloat moveX = self.tolerance.width * (xIsPos ? 1 : -1);
+        CGFloat moveY = self.tolerance.height * (yIsPos? 1 : -1);
+        CGFloat targetX = _lastPoint.x + (self.tolerance.width * factor.width);
+        CGFloat targetY = _lastPoint.y + (self.tolerance.height * factor.height);
+        
+        NSLog(@"move: %g x %g", moveX, moveY);
+        NSLog(@"target: %g x %g", targetX, targetY);
+        
+        PKPoint *current = [_lastPoint copy];
+        while (current.x != targetX || current.y != targetY) {
+          
+          if (xIsPos) {
+            if (current.x < targetX)
+              current.x += moveX;
+            else
+              current.x = targetX;
+          } else {
+            if (current.x > targetX)
+              current.x += moveX;
+            else
+              current.x = targetX;
+          }
+          
+          if (yIsPos) {
+            if (current.y < targetY)
+              current.y += moveY;
+            else
+              current.y = targetY;
+          } else {
+            if (current.y > targetY)
+              current.y += moveY;
+            else
+              current.y = targetY;
+          }
+          
+          // add this point
+          [self actuallyAddPoint:[current copy]];
+          _lastPoint = current;
+          
+        }
+        
+        _useToleranceAsMaximumDistanceBusy = NO;
+      } else {
+        
+        // just add the point - don't try to be clever
+        [self actuallyAddPoint:point];
+        _lastPoint = point;
+        
+      }
+      
+    } else {
+      NSLog(@"Zero factor - ignoring");
     }
     
   }

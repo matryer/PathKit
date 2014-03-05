@@ -38,9 +38,11 @@
 
 - (void)testAddPoint {
   
+  __block NSInteger blockCallCount = 0;
   __block PKPath *blockPath = nil;
   PKPathChangedBlock block = ^(PKPath* thePath){
     blockPath = thePath;
+    blockCallCount++;
   };
   PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:block];
   [path addPoint:PKPointMake(10, 20)];
@@ -56,6 +58,7 @@
   // make sure block was called
   XCTAssertNotNil(blockPath, @"block should be called");
   XCTAssertEqualObjects(blockPath, path);
+  XCTAssertEqual((NSInteger)1, blockCallCount);
   
   // (test) reset the blockPath
   blockPath = nil;
@@ -75,6 +78,7 @@
 
   // and shouldn't call the block
   XCTAssertNil(blockPath);
+  XCTAssertEqual((NSInteger)1, blockCallCount);
 
   // add point - more then tolerance away
   [path addPoint:PKPointMake(16, 22)];
@@ -89,9 +93,99 @@
   
   // and should call the block
   XCTAssertEqualObjects(blockPath, path);
-  
+  XCTAssertEqual((NSInteger)2, blockCallCount);
   XCTAssertEqual([path.points count], (NSUInteger)2);
 
+}
+
+- (void) testAddPointWithDistantPoints {
+  
+  //
+  // adding a point that is more than the tolerance away
+  // should cause multiple points to be added
+  // if useToleranceAsMaximumDistance == YES
+  //
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathChangedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:block];
+  path.useToleranceAsMaximumDistance = YES;
+  
+  // start point
+  [path addPoint:PKPointMake(10, 10)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)1);
+  XCTAssertEqual((NSInteger)1, blockCallCount);
+  
+  [path addPoint:PKPointMake(30, 30)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)5);
+  XCTAssertEqual((NSInteger)2, blockCallCount);
+  
+}
+
+- (void) testAddPointWithDistantPointsUnevenNumbers {
+  
+  //
+  // adding a point that is more than the tolerance away
+  // should cause multiple points to be added
+  // if useToleranceAsMaximumDistance == YES
+  //
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathChangedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:block];
+  path.useToleranceAsMaximumDistance = YES;
+  
+  // start point
+  [path addPoint:PKPointMake(10, 10)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)1);
+  XCTAssertEqual((NSInteger)1, blockCallCount);
+  
+  [path addPoint:PKPointMake(33, 32)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)5);
+  XCTAssertEqual((NSInteger)2, blockCallCount);
+  
+}
+
+- (void) testAddPointWithDistantPointsNegativePos {
+  
+  //
+  // adding a point that is more than the tolerance away
+  // should cause multiple points to be added
+  // if useToleranceAsMaximumDistance == YES
+  //
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathChangedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:block];
+  path.useToleranceAsMaximumDistance = YES;
+  
+  // start point
+  [path addPoint:PKPointMake(30, 30)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)1);
+  XCTAssertEqual((NSInteger)1, blockCallCount);
+  
+  [path addPoint:PKPointMake(10, 10)];
+  
+  XCTAssertEqual([path.points count], (NSUInteger)5);
+  XCTAssertEqual((NSInteger)2, blockCallCount);
+  
 }
 
 - (void) testPoints {
@@ -122,6 +216,10 @@
   
   XCTAssertEqual(((PKPoint*)[points objectAtIndex:5]).x, (CGFloat)50);
   XCTAssertEqual(((PKPoint*)[points objectAtIndex:5]).y, (CGFloat)50);
+  
+  // start point
+  XCTAssertEqual([path startPoint].x, (CGFloat)5);
+  XCTAssertEqual([path startPoint].y, (CGFloat)5);
   
 }
 

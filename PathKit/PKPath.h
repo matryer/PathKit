@@ -19,9 +19,10 @@ typedef CGSize PKTolerance;
 
 @property (assign, readonly) CGSize tolerance;
 @property (copy, readonly) PKPathChangedBlock pathChangedBlock;
-@property (assign, readonly) PKPoint *startPoint;
-@property (assign, readonly) PKPoint *lastPoint;
+@property (strong, readonly) PKPoint *startPoint;
+@property (strong, readonly) PKPoint *lastPoint;
 @property (strong, readonly) NSArray *points;
+@property (assign, readwrite) BOOL useToleranceAsMaximumDistance;
 
 - (id) initWithTolerance:(PKTolerance)tolerance;
 

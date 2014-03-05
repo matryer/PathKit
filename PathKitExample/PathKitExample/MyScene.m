@@ -41,7 +41,7 @@
   }
   
   // make a new PKPath
-  self.path = [[PKPath alloc] initWithTolerance:CGSizeMake(20,20) pathChangedBlock:^(PKPath *thePath) {
+  self.path = [[PKPath alloc] initWithTolerance:CGSizeMake(5,5) pathChangedBlock:^(PKPath *thePath) {
     
     // the path has changed - update it
     
@@ -63,6 +63,7 @@
     self.pathNode.path = self.pathRef;
     
   }];
+  [self.path setUseToleranceAsMaximumDistance:YES];
   
 }
 
@@ -70,6 +71,12 @@
   
   CGPoint touchPosition = [[touches anyObject] locationInNode:self];
   [self.path addPoint:PKPointMake(touchPosition.x, touchPosition.y)];
+  
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  NSLog(@"%@", [self.path points]);
   
 }
 
