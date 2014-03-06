@@ -18,6 +18,7 @@
 		0526805318C7BDB0008E2F6E /* PKPointTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526805218C7BDB0008E2F6E /* PKPointTests.m */; };
 		0526805E18C92A48008E2F6E /* PKPathNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526805D18C92A48008E2F6E /* PKPathNodeTests.m */; };
 		0526806118C92ABC008E2F6E /* PKPathNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806018C92ABC008E2F6E /* PKPathNode.m */; };
+		0526806718C939C0008E2F6E /* TestPKPathNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */; };
 		05B3327F18C557DE00956A79 /* PKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3327E18C557DE00956A79 /* PKPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,9 @@
 		0526805F18C92ABC008E2F6E /* PKPathNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPathNode.h; sourceTree = "<group>"; };
 		0526806018C92ABC008E2F6E /* PKPathNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPathNode.m; sourceTree = "<group>"; };
 		0526806318C92B79008E2F6E /* PKCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKCommon.h; sourceTree = "<group>"; };
+		0526806418C938EF008E2F6E /* PKPathNodeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathNodeDelegate.h; sourceTree = "<group>"; };
+		0526806518C939C0008E2F6E /* TestPKPathNodeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPKPathNodeDelegate.h; sourceTree = "<group>"; };
+		0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegate.m; sourceTree = "<group>"; };
 		05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathChangedBlock.h; sourceTree = "<group>"; };
 		05B3327D18C557DE00956A79 /* PKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPoint.h; sourceTree = "<group>"; };
 		05B3327E18C557DE00956A79 /* PKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPoint.m; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			children = (
 				0526805F18C92ABC008E2F6E /* PKPathNode.h */,
 				0526806018C92ABC008E2F6E /* PKPathNode.m */,
+				0526806418C938EF008E2F6E /* PKPathNodeDelegate.h */,
 			);
 			name = SpriteKit;
 			sourceTree = "<group>";
@@ -200,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				0526805D18C92A48008E2F6E /* PKPathNodeTests.m */,
+				0526806518C939C0008E2F6E /* TestPKPathNodeDelegate.h */,
+				0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */,
 			);
 			name = SpriteKit;
 			sourceTree = "<group>";
@@ -327,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0526806718C939C0008E2F6E /* TestPKPathNodeDelegate.m in Sources */,
 				0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */,
 				0526805E18C92A48008E2F6E /* PKPathNodeTests.m in Sources */,
 				0526805318C7BDB0008E2F6E /* PKPointTests.m in Sources */,

@@ -8,8 +8,10 @@
 
 #import <XCTest/XCTest.h>
 #import <SpriteKit/SpriteKit.h>
+#import "PKPathNodeDelegate.h"
 #import "PKPathNode.h"
 #import "PKPoint.h"
+#import "TestPKPathNodeDelegate.h"
 
 @interface PKPathNodeTests : XCTestCase
 
@@ -27,12 +29,20 @@
   
 }
 
-- (void)testAddPoint {
+- (void)testPath {
   
-  //PKPathNode *node = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10,10)];
-  //XCTAssertNil(node.pathController);
+  TestPKPathNodeDelegate *delegate = [[TestPKPathNodeDelegate alloc] init];
+  PKPathNode *node = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10,10)];
+  [node setDelegate:delegate];
   
-  //[node addPoint:PKPointMake(10,10)];
+  PKPath *path = [node path];
+  
+  // a path should have been created
+  XCTAssertNotNil(path);
+  XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", delegate.lastMethod);
+  XCTAssertEqualObjects(node, [delegate.lastArgs objectAtIndex:0]);
+  XCTAssertEqualObjects(path, [delegate.lastArgs objectAtIndex:1]);
+  
   
 }
 
