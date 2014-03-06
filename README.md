@@ -30,3 +30,21 @@ Setting `useToleranceAsMaximumDistance` to `YES` will mean that no two points in
 #### `snapStartPointToTolerance = YES`
 
 Settings `snapStartPointToTolerance` to `YES` will cause the start point to be snapped to the nearest grid point as specified by the tolerance size.  This ensures that your paths will strictly adhear to the grid.
+
+## Snippets
+
+### Adding points
+
+Once you have created your PKPath, adding points in response to user interactions can be achieved by implementing the touchesMoved:withEvent: selector:
+
+```
+- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  // get the location in this SpriteKit scene
+  CGPoint touchPosition = [[touches anyObject] locationInNode:self];
+  
+  // add it to the PKPath
+  [self.path addPoint:PKPointMake(touchPosition.x, touchPosition.y)];
+  
+}
+```

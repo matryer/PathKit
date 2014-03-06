@@ -124,12 +124,9 @@
 		0509AA5F18C544C600C43E15 /* PathKit */ = {
 			isa = PBXGroup;
 			children = (
+				0526805818C92959008E2F6E /* SpriteKit */,
 				0509AA6018C544C600C43E15 /* Supporting Files */,
-				0509AA8318C546F500C43E15 /* PKPath.h */,
-				0509AA8418C546F500C43E15 /* PKPath.m */,
-				05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */,
-				05B3327D18C557DE00956A79 /* PKPoint.h */,
-				05B3327E18C557DE00956A79 /* PKPoint.m */,
+				0526805618C92949008E2F6E /* PKPath */,
 			);
 			path = PathKit;
 			sourceTree = "<group>";
@@ -160,6 +157,25 @@
 				0509AA7618C544C600C43E15 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0526805618C92949008E2F6E /* PKPath */ = {
+			isa = PBXGroup;
+			children = (
+				0509AA8318C546F500C43E15 /* PKPath.h */,
+				0509AA8418C546F500C43E15 /* PKPath.m */,
+				05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */,
+				05B3327D18C557DE00956A79 /* PKPoint.h */,
+				05B3327E18C557DE00956A79 /* PKPoint.m */,
+			);
+			name = PKPath;
+			sourceTree = "<group>";
+		};
+		0526805818C92959008E2F6E /* SpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SpriteKit;
 			sourceTree = "<group>";
 		};
 		05B332CD18C55AB800956A79 /* Products */ = {

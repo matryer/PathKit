@@ -26,7 +26,7 @@ typedef CGSize PKTolerance;
  * added if they are more than five pixels away from the last.
  */
 @property (assign, readonly) CGSize tolerance;
-@property (copy, readonly) PKPathChangedBlock pathChangedBlock;
+@property (copy, readwrite) PKPathChangedBlock pathChangedBlock;
 @property (strong, readonly) PKPoint *startPoint;
 @property (strong, readonly) PKPoint *lastPoint;
 @property (strong, readonly) NSArray *points;
