@@ -9,6 +9,7 @@
 #ifndef PathKit_PKPathKit_h
 #define PathKit_PKPathKit_h
 
+#import "PKCommon.h"
 #import "PKPoint.h"
 #import "PKPath.h"
 

@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "PKPathChangedBlock.h"
+#import "PKCommon.h"
 @class PKPoint;
-
-typedef CGSize PKDelta;
-typedef CGSize PKDeltaFactor;
-typedef CGSize PKTolerance;
 
 @interface PKPath : NSObject
 
