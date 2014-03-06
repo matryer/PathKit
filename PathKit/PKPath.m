@@ -63,6 +63,9 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   return path;
 }
 
+/**
+ * addPoint adds a new point to the path, assuming it's within tolerances.
+ */
 - (BOOL) addPoint:(PKPoint *)point {
   
   // ignore points if we're still working
