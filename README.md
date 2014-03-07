@@ -19,13 +19,13 @@ More advanced users may decide to interact with the `PKPath` directly, but the `
 
 #### Tolerance
 
-You are able to specify a tolerance (a `CGSize` describing a grid of tolerances), which represents the minimum distance the finger must travel in order for a new point to be added to the path.  This helps limit the resolution of paths that can otherwise become memory consuming.
+You are able to specify a tolerance (a `CGSize` describing a grid of tolerances), which represents the minimum distance the point must be away from the previous point in order for a new point to be added to the path.  This helps limit the resolution of paths that can otherwise become memory consuming.  It can also be used to create an interesting effect for paths.
 
 ```
 self.pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10, 10)];
 ```
 
-## Snippets
+## Usage
 
 ### Creating and adding a PKPathNode
 
@@ -57,6 +57,14 @@ Once you have created your PKPath, adding points in response to user interaction
   
 }
 ```
+
+  * Only points that are far enough away from the previous point will be added (within the specified tolerance.)
+  * Whenever points are indeed added and the path has changed, `PKPathNode` will update itself.
+  * You may use the `pathNode:makeCGPathForPKPath:` in the delegate if you want to control exactly what sort of path is displayed.
+
+### Resetting the path
+
+Instead of removing the `PKPathNode` from the scene and creating a new one, you may use the `clearPath` method which will release the path from memory and clear the points.
 
 ## PKPathNodeDelegate
 
