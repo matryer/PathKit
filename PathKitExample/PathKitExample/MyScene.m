@@ -26,8 +26,12 @@
     [self addChild:myLabel];
     
     // make a new path node
-    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10, 10)];
+    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(30, 30)];
     [_pathNode setDelegate:self];
+    
+    // setup formatting for the path
+    [_pathNode setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
+    
     [self addChild:_pathNode];
     
   }
@@ -35,15 +39,20 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  // start a new path
   [self.pathNode clearPath];
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  // add this point
   CGPoint touchPosition = [[touches anyObject] locationInNode:self];
   [self.pathNode addPoint:touchPosition];
+  
 }
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  // do something with the path
 }
 
 #pragma mark - PKPathNodeDelegate
