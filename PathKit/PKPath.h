@@ -29,6 +29,7 @@
 @property (strong, readonly) NSArray *points;
 @property (assign, readwrite) BOOL useToleranceAsMaximumDistance;
 @property (assign, readwrite) BOOL snapStartPointToTolerance;
+@property (assign, readonly) CGFloat length;
 
 /**
  * Creates a new PKPath with the specified tolerance.
@@ -58,8 +59,15 @@
 
 /**
  * Gets the distance between two points.
+ * TODO: move/add this to PKPoint.
  */
 + (PKDelta) deltaFromPoint:(PKPoint *)fromPoint toPoint:(PKPoint *)toPoint;
+
+/**
+ * Gets the distance, in pixels, between the two points.
+ * TODO: move/add this to PKPoint.
+ */
++ (CGFloat) distanceBetweenPoint:(PKPoint *)pointA toPoint:(PKPoint *)pointB;
 
 /**
 * Gets the factor for the specified delta as a ratio against the tolerance.

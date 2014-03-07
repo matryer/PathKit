@@ -42,6 +42,12 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   } else {
     [self.thePoints addObject:point];
   }
+  
+  // update the length
+  if (_lastPoint != nil) {
+    _length += [PKPath distanceBetweenPoint:_lastPoint toPoint:point];
+  }
+  
 }
 
 - (CGMutablePathRef) makeCGPath {
@@ -108,9 +114,6 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
         CGFloat targetX = _lastPoint.x + (self.tolerance.width * factor.width);
         CGFloat targetY = _lastPoint.y + (self.tolerance.height * factor.height);
         
-        //NSLog(@"move: %g x %g", moveX, moveY);
-        //NSLog(@"target: %g x %g", targetX, targetY);
-        
         PKPoint *current = [_lastPoint copy];
         while (current.x != targetX || current.y != targetY) {
           
@@ -153,9 +156,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
         
       }
       
-    }// else {
-      //NSLog(@"Zero factor - ignoring");
-    //}
+    }
     
   }
   
@@ -175,6 +176,11 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
 
 + (PKDelta) deltaFromPoint:(PKPoint *)fromPoint toPoint:(PKPoint *)toPoint {
   return CGSizeMake(toPoint.x - fromPoint.x, toPoint.y - fromPoint.y);
+}
+
++ (CGFloat) distanceBetweenPoint:(PKPoint *)pointA toPoint:(PKPoint *)pointB {
+  PKDelta delta = [PKPath deltaFromPoint:pointA toPoint:pointB];
+  return sqrtf(powf(delta.width, 2) + powf(delta.height, 2));
 }
 
 + (PKDeltaFactor) factorForDelta:(PKDelta)delta perTolerance:(PKTolerance)tolerance {
