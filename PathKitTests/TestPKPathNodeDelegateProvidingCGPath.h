@@ -1,5 +1,5 @@
 //
-//  TestPKPathNodeDelegate.h
+//  TestPKPathNodeDelegateProvidingCGPath.h
 //  PathKit
 //
 //  Created by Mat Ryer on 3/6/14.
@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "PKPathNodeDelegate.h"
 
-@interface TestPKPathNodeDelegate : NSObject <PKPathNodeDelegate>
+@interface TestPKPathNodeDelegateProvidingCGPath : NSObject <PKPathNodeDelegate>
 
 @property (copy, readonly) NSString *lastMethod;
 @property (strong, readonly) NSArray *lastArgs;
-
-- (void)reset;
 
 @end

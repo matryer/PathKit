@@ -18,8 +18,16 @@
  * Called when the PKPathNode creates a new path.
  * 
  * This is the perfect place to do any additional configuration on the 
- * PKPath.
+ * PKPath before points are added to it.
  */
-- (void) pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path;
+- (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path;
+
+/**
+ * If defined, will be called when the PKNodePath needs a CGPathRef for the
+ * specified path.  Otherwise, the default path joining all points will be used.
+ *
+ * PKNodePath will release the returned CGPathRef when it is finished with it.
+ */
+- (CGPathRef)pathNode:(PKPathNode *)node makeCGPathForPKPath:(PKPath *)path;
 
 @end

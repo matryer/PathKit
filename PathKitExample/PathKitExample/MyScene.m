@@ -2,7 +2,7 @@
 //  MyScene.m
 //  PathKitExample
 //
-//  Created by Mat Ryer on 3/3/14.
+//  Created by Mat Ryer on 3/6/14.
 //  Copyright (c) 2014 Mat Ryer. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @implementation MyScene
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
   if (self = [super initWithSize:size]) {
     /* Setup your scene here */
     
@@ -24,65 +24,33 @@
                                    CGRectGetMidY(self.frame));
     
     [self addChild:myLabel];
+    
+    // make a new path node
+    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10, 10)];
+    [_pathNode setDelegate:self];
+    [self addChild:_pathNode];
+    
   }
   return self;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-  // start a new path every time they begin a touch
-  if (self.path != nil) {
-    
-    NSLog(@"Starting a new path...");
-
-    // kill the PKPath
-    self.path = nil;
-    
-  }
-  
-  // make a new PKPath
-  self.path = [[PKPath alloc] initWithTolerance:CGSizeMake(5,5) pathChangedBlock:^(PKPath *thePath) {
-    
-    // the path has changed - update it
-    
-    // create the path
-    if (self.pathNode == nil) {
-      
-      // if there's no path - add one
-      self.pathNode = [SKShapeNode node];
-      [self.pathNode setStrokeColor:[UIColor whiteColor]];
-      [self addChild:self.pathNode];
-      
-    } else {
-      // there was an old path - release it
-      CGPathRelease(self.pathRef);
-    }
-  
-    // get the CGPathRef from the PXPath
-    self.pathRef = [thePath makeCGPath];
-    self.pathNode.path = self.pathRef;
-    
-  }];
-  [self.path setUseToleranceAsMaximumDistance:YES];
-  [self.path setSnapStartPointToTolerance:YES];
-  
+  [self.pathNode clearPath];
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  
   CGPoint touchPosition = [[touches anyObject] locationInNode:self];
-  [self.path addPoint:PKPointMake(touchPosition.x, touchPosition.y)];
-  
+  [self.pathNode addPoint:touchPosition];
 }
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  
-  NSLog(@"%@", [self.path points]);
-  
 }
 
--(void)update:(CFTimeInterval)currentTime {
-  /* Called before each frame is rendered */
+#pragma mark - PKPathNodeDelegate
+
+- (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
+  [path setUseToleranceAsMaximumDistance:YES];
+  [path setSnapStartPointToTolerance:YES];
 }
 
 @end

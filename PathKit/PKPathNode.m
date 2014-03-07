@@ -8,10 +8,11 @@
 
 #import "PKPathNode.h"
 #import "PKPath.h"
+#import "PKPoint.h"
 #import "PKPathNodeDelegate.h"
 
 @interface PKPathNode ()
-@property (strong, readwrite) PKPath *_path;
+@property (strong, readwrite) PKPath *_pkpath;
 @end
 
 @implementation PKPathNode
@@ -25,34 +26,73 @@
   return self;
 }
 
-- (PKPath *)path {
+- (void)dealloc {
+  [self ensurePathReleased];
+}
+
+- (PKPath *)pkPath {
   
-  if (self._path == nil) {
+  if (self._pkpath == nil) {
     
     // make a new path
-    self._path = [[PKPath alloc] initWithTolerance:self.tolerance pathChangedBlock:^(PKPath *thePath) {
+    self._pkpath = [[PKPath alloc] initWithTolerance:self.tolerance pathChangedBlock:^(PKPath *thePath) {
       [self pathChanged:thePath];
     }];
     
     // tell the delegate
     if ([self.delegate respondsToSelector:@selector(pathNode:didCreateNewPath:)]) {
-      [self.delegate pathNode:self didCreateNewPath:self._path];
+      [self.delegate pathNode:self didCreateNewPath:self._pkpath];
     }
     
   }
   
-  return self._path;
+  return self._pkpath;
   
 }
-- (void)setPath:(PKPath *)path {
+
+- (void)setPkPath:(PKPath *)path {
+  self._pkpath = path;
+}
+
+- (CGPathRef)makeCGPath {
+  
+  // will the delegate provide the CGPathRef?
+  if ([self.delegate respondsToSelector:@selector(pathNode:makeCGPathForPKPath:)]) {
+    return [self.delegate pathNode:self makeCGPathForPKPath:self.pkPath];
+  } else {
+    return [self.pkPath makeCGPath];
+  }
   
 }
 
 - (void)pathChanged:(PKPath *)path {
+
+  [self ensurePathReleased];
+  
+  // create a new path - and set it
+  self.path = [self makeCGPath];
   
 }
 
+- (void)ensurePathReleased {
+  // release and clear existing path
+  if (self.path != nil) {
+    CGPathRelease(self.path);
+    self.path = nil;
+  }
+}
+
 - (void)addPoint:(CGPoint)point {
+  [self.pkPath addPoint:PKPointMake(point.x, point.y)];
+}
+
+- (NSArray *)points {
+  return self.pkPath.points;
+}
+
+- (void)clearPath {
+  [self ensurePathReleased];
+  self._pkpath = nil;
 }
 
 @end

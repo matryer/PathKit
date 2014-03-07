@@ -2,17 +2,16 @@
 //  MyScene.h
 //  PathKitExample
 //
-
+//  Created by Mat Ryer on 3/6/14.
 //  Copyright (c) 2014 Mat Ryer. All rights reserved.
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import <PathKit/PKPathKit.h>
+#import "PKPathKit.h"
+@class PKPathNode;
 
-@interface MyScene : SKScene
+@interface MyScene : SKScene <PKPathNodeDelegate>
 
-@property (nonatomic, strong) PKPath *path;
-@property (nonatomic, strong) SKShapeNode *pathNode;
-@property (assign) CGPathRef pathRef;
+@property (strong, readonly) PKPathNode *pathNode;
 
 @end

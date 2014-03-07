@@ -11,11 +11,18 @@
 @class PKPath;
 @protocol PKPathNodeDelegate;
 
-@interface PKPathNode : NSObject
+@interface PKPathNode : SKShapeNode
 
 - (id) initWithTolerance:(PKTolerance)tolerance;
 
+/**
+ * Gets the tolerance that this PKPathNode was initialized with.
+ */
 @property (assign, readonly) PKTolerance tolerance;
+
+/**
+ * Gets or sets the PKPathNodeDelegate that this object will report to.
+ */
 @property (assign, readwrite) id<PKPathNodeDelegate> delegate;
 
 /**
@@ -23,7 +30,33 @@
  */
 - (void) addPoint:(CGPoint)point;
 
-- (PKPath *)path;
-- (void)setPath:(PKPath*)path;
+/**
+ * Points gets the points that were added to this PKPathNode.
+ */
+- (NSArray *)points;
+
+/**
+ * Gets the underlying PKPath that this PKPathNode uses.
+ */
+- (PKPath *)pkPath;
+
+/**
+ * Makes a new CGPath and returns the CGPathRef for use in the SKShapeNode.path
+ * property.
+ *
+ * Callers of this must remember to release the CGPathRef in order to avoid
+ * memory leaks.
+ */
+- (CGPathRef)makeCGPath;
+
+/**
+ * Sets the underlying PKPath that this PKPathNode uses.
+ */
+- (void)setPkPath:(PKPath*)pkPath;
+
+/**
+ * Clears the path and removes all points.
+ */
+- (void)clearPath;
 
 @end

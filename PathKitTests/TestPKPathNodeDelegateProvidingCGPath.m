@@ -1,5 +1,5 @@
 //
-//  TestPKPathNodeDelegate.m
+//  TestPKPathNodeDelegateProvidingCGPath.m
 //  PathKit
 //
 //  Created by Mat Ryer on 3/6/14.
@@ -7,20 +7,14 @@
 //
 
 #import <CoreGraphics/CoreGraphics.h>
-#import "TestPKPathNodeDelegate.h"
+#import "TestPKPathNodeDelegateProvidingCGPath.h"
 
-@implementation TestPKPathNodeDelegate
+@implementation TestPKPathNodeDelegateProvidingCGPath
 
-- (id) init {
-  if (self = [super init]) {
-    [self reset];
-  }
-  return self;
-}
-
-- (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
-  _lastMethod = @"pathNode:didCreateNewPath:";
+- (CGPathRef)pathNode:(PKPathNode *)node makeCGPathForPKPath:(PKPath *)path {
+  _lastMethod = @"pathNode:cgPathForPKPath:";
   _lastArgs = [NSArray arrayWithObjects:node, path, nil];
+  return nil;
 }
 
 - (void)reset {
