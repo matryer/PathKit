@@ -12,5 +12,7 @@
 #import "PKCommon.h"
 #import "PKPoint.h"
 #import "PKPath.h"
+#import "PKPathNode.h"
+#import "PKPathNodeDelegate.h"
 
 #endif
