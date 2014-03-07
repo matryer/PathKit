@@ -20,7 +20,8 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
 - (id) initWithTolerance:(CGSize)tolerance {
   if (self = [super init]) {
     _tolerance = tolerance;
-    _useToleranceAsMaximumDistance = NO;
+    _useToleranceAsMaximumDistance = YES;
+    _snapStartPointToTolerance = YES;
   }
   return self;
 }

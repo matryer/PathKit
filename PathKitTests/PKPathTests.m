@@ -45,6 +45,8 @@
     blockCallCount++;
   };
   PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:block];
+  [path setSnapStartPointToTolerance:NO];
+  [path setUseToleranceAsMaximumDistance:NO];
   [path addPoint:PKPointMake(10, 20)];
   
   // make sure startPoint and lastPoints were set
@@ -202,6 +204,9 @@
 - (void) testPoints {
   
   PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5) pathChangedBlock:nil];
+  [path setSnapStartPointToTolerance:NO];
+  [path setUseToleranceAsMaximumDistance:NO];
+
   [path addPoint:PKPointMake(5, 5)];
   [path addPoint:PKPointMake(10, 10)];
   [path addPoint:PKPointMake(20, 20)];
