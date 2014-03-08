@@ -358,11 +358,19 @@
   length = [PKPath distanceBetweenPoint:PKPointMake(0, 0) toPoint:PKPointMake(10, 10)];
   XCTAssertEqual((CGFloat)14, round(length));
   
+  // x from non-zero
+  length = [PKPath distanceBetweenPoint:PKPointMake(10, 10) toPoint:PKPointMake(20, 10)];
+  XCTAssertEqual((CGFloat)10, length);
+  
+  // y from non-zero
+  length = [PKPath distanceBetweenPoint:PKPointMake(10, 10) toPoint:PKPointMake(10, 15)];
+  XCTAssertEqual((CGFloat)5, length);
+  
 }
 
 - (void)testLength {
   
-  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5)];
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(1, 1)];
   
   [path addPoint:PKPointMake(10, 10)];
   XCTAssertEqual((CGFloat)0, path.length);

@@ -37,16 +37,20 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
  Actually adds to the _points array.
  */
 - (void) actuallyAddPoint:(PKPoint *)point {
+    
   if (self.thePoints == nil) {
     self.thePoints = [[NSMutableArray alloc] initWithObjects:point, nil];
   } else {
     [self.thePoints addObject:point];
   }
   
-  // update the length
+  // update the length if this is not the first point
   if (_lastPoint != nil) {
     _length += [PKPath distanceBetweenPoint:_lastPoint toPoint:point];
   }
+  
+  // set the new last point
+  _lastPoint = point;
   
 }
 
@@ -87,7 +91,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       point = PKPointMake(_tolerance.width * floor((point.x / _tolerance.width) + 0.5), _tolerance.height * floor((point.y / _tolerance.height) + 0.5));
     }
     
-    _startPoint = _lastPoint = [point copy];
+    _startPoint = [point copy];
     shouldCallBlock = YES;
     [self actuallyAddPoint:point];
     
@@ -103,6 +107,12 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       shouldCallBlock = YES;
       
       if (self.useToleranceAsMaximumDistance) {
+        
+        /*
+         * snap the point to the nearest accepted value in the tolerance
+         * grid, but also, create enough points from A to B.
+         */
+        
         _useToleranceAsMaximumDistanceBusy = YES;
         
         BOOL xIsPos = delta.width >= 0 ? YES : NO;
@@ -143,16 +153,15 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
           
           // add this point
           [self actuallyAddPoint:[current copy]];
-          _lastPoint = current;
           
         }
         
         _useToleranceAsMaximumDistanceBusy = NO;
+        
       } else {
         
         // just add the point - don't try to be clever
         [self actuallyAddPoint:point];
-        _lastPoint = point;
         
       }
       
