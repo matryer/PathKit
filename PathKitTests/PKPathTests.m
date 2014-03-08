@@ -384,6 +384,14 @@
   [path addPoint:PKPointMake(30, 20)];
   XCTAssertEqual((CGFloat)30, path.length);
 
+  // moving negative should still increase
+  // length
+  [path addPoint:PKPointMake(0, 20)];
+  XCTAssertEqual((CGFloat)60, path.length);
+
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)80, path.length);
+
 }
 
 @end
