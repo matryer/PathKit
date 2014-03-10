@@ -74,14 +74,17 @@
     self.plane = [SKSpriteNode spriteNodeWithImageNamed:@"plane"];
   }
   
+  [self.plane setScale:0.1];
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
-  SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:self.pathNode.pkPath.length / 100];
+  NSTimeInterval duration = self.pathNode.pkPath.length / 50;
+  SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:duration];
   [followPath setTimingMode:SKActionTimingEaseInEaseOut];
   
   // add the plane
   [self addChild:self.plane];
  
   [self.plane runAction:followPath];
+  [self.plane runAction:[SKAction scaleTo:1 duration:2]];
   
 }
 
