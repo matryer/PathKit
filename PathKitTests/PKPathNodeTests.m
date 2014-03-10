@@ -65,6 +65,7 @@
   
   CGPathRef pathRef = pathNode.path;
   
+  if (pathRef) {
   XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", delegate.lastMethod);
   XCTAssertEqualObjects(pathNode, [delegate.lastArgs objectAtIndex:0]);
   XCTAssertEqual((NSUInteger)1, [pathNode.pkPath.points count]);
@@ -77,8 +78,11 @@
   
   CGPathRef pathRef2 = pathNode.path;
 
-  XCTAssertEqual((NSUInteger)2, [pathNode.points count]);
-  XCTAssertNotEqual(pathRef, pathRef2);
+    if (pathRef2) {
+      XCTAssertEqual((NSUInteger)2, [pathNode.points count]);
+    }
+    
+  }
   
 }
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import "PKPathChangedBlock.h"
+#import "PKBlockEvents.h"
 #import "PKCommon.h"
 @class PKPoint;
 
@@ -24,12 +24,14 @@
  */
 @property (assign, readonly) CGSize tolerance;
 @property (copy, readwrite) PKPathChangedBlock pathChangedBlock;
+@property (copy, readwrite) PKPathMaximumLengthReachedBlock maximumLengthReachedBlock;
 @property (strong, readonly) PKPoint *startPoint;
 @property (strong, readonly) PKPoint *lastPoint;
 @property (strong, readonly) NSArray *points;
 @property (assign, readwrite) BOOL useToleranceAsMaximumDistance;
 @property (assign, readwrite) BOOL snapStartPointToTolerance;
 @property (assign, readonly) CGFloat length;
+@property (strong, readwrite) NSNumber *maximumLength;
 
 /**
  * Creates a new PKPath with the specified tolerance.
