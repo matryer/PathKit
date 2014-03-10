@@ -27,7 +27,7 @@
     [self addChild:myLabel];
     
     // make a new path node
-    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(5, 5)];
+    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(20, 20)];
     [_pathNode setDelegate:self];
     [_pathNode setMaximumLength:[NSNumber numberWithFloat:2000]];
     
