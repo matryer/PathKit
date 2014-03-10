@@ -32,6 +32,7 @@
 @property (assign, readwrite) BOOL snapStartPointToTolerance;
 @property (assign, readonly) CGFloat length;
 @property (strong, readwrite) NSNumber *maximumLength;
+@property (assign, readonly) BOOL maximumLengthReached;
 
 /**
  * Creates a new PKPath with the specified tolerance.

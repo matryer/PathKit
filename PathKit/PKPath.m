@@ -76,15 +76,10 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   if (hasMaxLength && newLength > maxLength) {
     
     CGFloat overshoot = newLength - maxLength;
-    
     PKDelta delta = [PKPath deltaFromPoint:_lastPoint toPoint:point];
-    
-    NSLog(@"pointLength: %g", pointLength);
-    NSLog(@"Point before: %@", point);
 
     if (delta.width == 0) {
       // vertical line
-      NSLog(@"--- Vertical line");
       if (delta.height < 0) {
         point.y += overshoot;
       } else {
@@ -92,7 +87,6 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       }
     } else if (delta.height == 0) {
       // horizontal line
-      NSLog(@"--- horizontal line");
       if (delta.width < 0) {
         point.x += overshoot;
       } else {
@@ -103,18 +97,13 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       CGFloat targetPointLength = pointLength - overshoot;
       CGFloat scale = targetPointLength / pointLength;
       
-      NSLog(@"targetPointLength: %g", targetPointLength);
-      NSLog(@"ratio: %g", scale);
-      
       point.x = _lastPoint.x + (delta.width * scale);
       point.y = _lastPoint.y + (delta.height * scale);
       
     }
-    NSLog(@"Point after: %@", point);
 
     shouldAddPoint = ((pointLength = [PKPath distanceBetweenPoint:_lastPoint toPoint:point]) > 0);
     
-    NSLog(@"shouldAddPoint: %@", shouldAddPoint ? @"YES" : @"NO");
   }
   
   if (shouldAddPoint) {
@@ -135,6 +124,9 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   }
   
   if (hasMaxLength && _length >= maxLength) {
+    
+    // maximum length has been reached
+    _maximumLengthReached = YES;
     
     // should we call the meximum reached block?
     if (self.maximumLengthReachedBlock != nil) {

@@ -34,10 +34,19 @@
   
   if (self._pkpath == nil) {
     
+    __block PKPathNode *that = self;
     // make a new path
     self._pkpath = [[PKPath alloc] initWithTolerance:self.tolerance pathChangedBlock:^(PKPath *thePath) {
-      [self pathChanged:thePath];
+      [that pathChanged:thePath];
     }];
+    
+    // listen for maximum length warning too
+    self._pkpath.maximumLengthReachedBlock = ^(PKPath *thePath){
+      [that reachedMaximumLengthForPath:thePath];
+    };
+    
+    // set the maximum length
+    self._pkpath.maximumLength = self.maximumLength;
     
     // tell the delegate
     if ([self.delegate respondsToSelector:@selector(pathNode:didCreateNewPath:)]) {
@@ -72,6 +81,16 @@
   // create a new path - and set it
   self.path = [self makeCGPath];
   
+}
+
+- (void)reachedMaximumLengthForPath:(PKPath*)path {
+  if ([self.delegate respondsToSelector:@selector(pathNode:reachedMaximumLengthForPath:)]) {
+    [self.delegate pathNode:self reachedMaximumLengthForPath:path];
+  }
+}
+
+- (BOOL) maximumLengthReached {
+  return self.pkPath.maximumLengthReached;
 }
 
 - (void)ensurePathReleased {
