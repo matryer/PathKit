@@ -66,6 +66,9 @@
   // set the first point
   [pathNode addPoint:CGPointMake(50, 50)];
   
+  XCTAssertEqual(pathNode.startPoint.x, (CGFloat)50);
+  XCTAssertEqual(pathNode.startPoint.y, (CGFloat)50);
+  
   CGPathRef pathRef = pathNode.path;
   
   if (pathRef) {

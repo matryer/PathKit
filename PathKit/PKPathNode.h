@@ -36,6 +36,11 @@
 @property (assign, readonly) BOOL maximumLengthReached;
 
 /**
+ * Gets the start point of the current path.
+ */
+@property (assign, readonly) CGPoint startPoint;
+
+/**
  * Adds a CGPoint to the path.
  */
 - (void) addPoint:(CGPoint)point;

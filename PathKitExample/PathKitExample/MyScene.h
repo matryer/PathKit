@@ -13,5 +13,6 @@
 @interface MyScene : SKScene <PKPathNodeDelegate>
 
 @property (strong, readonly) PKPathNode *pathNode;
+@property (strong) SKSpriteNode *plane;
 
 @end

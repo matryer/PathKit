@@ -14,11 +14,12 @@
   if (self = [super initWithSize:size]) {
     /* Setup your scene here */
     
-    self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+    self.backgroundColor = [SKColor whiteColor];
     
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
     
     myLabel.text = @"Draw a path!";
+    myLabel.color = [SKColor grayColor];
     myLabel.fontSize = 20;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
@@ -31,7 +32,7 @@
     [_pathNode setMaximumLength:[NSNumber numberWithFloat:2000]];
     
     // setup formatting for the path
-    [_pathNode setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
+    [_pathNode setStrokeColor:[UIColor blackColor]];
     [_pathNode setLineWidth:1];
     [_pathNode setGlowWidth:0];
     
@@ -42,8 +43,13 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  
+  // remove the plane
+  [self.plane removeFromParent];
+  
   // start a new path
   [self.pathNode clearPath];
+  
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -60,7 +66,22 @@
 }
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  // do something with the path
+
+  NSLog(@"Using the path to move the plane...");
+  
+  // get a plane and make it fly the path
+  if (self.plane == nil) {
+    self.plane = [SKSpriteNode spriteNodeWithImageNamed:@"plane"];
+  }
+  
+  CGPathRef path = [self.pathNode.pkPath makeCGPath];
+  SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:self.pathNode.pkPath.length / 100];
+  
+  // add the plane
+  [self addChild:self.plane];
+ 
+  [self.plane runAction:followPath];
+  
 }
 
 #pragma mark - PKPathNodeDelegate

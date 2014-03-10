@@ -30,6 +30,10 @@
   [self ensurePathReleased];
 }
 
+- (CGPoint) startPoint {
+  return CGPointMake(self.pkPath.startPoint.x, self.pkPath.startPoint.y);
+}
+
 - (PKPath *)pkPath {
   
   if (self._pkpath == nil) {

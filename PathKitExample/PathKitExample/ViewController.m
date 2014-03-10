@@ -24,7 +24,7 @@
   
     SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
   
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.scaleMode = SKSceneScaleModeResizeFill;
     
     // Present the scene.
     [skView presentScene:scene];

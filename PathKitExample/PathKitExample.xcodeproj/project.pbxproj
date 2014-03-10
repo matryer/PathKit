@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0526806A18C974D1008E2F6E /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806918C974D1008E2F6E /* MyScene.m */; };
+		059DB02918CE754500A9BC6E /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 059DB02818CE754500A9BC6E /* plane.png */; };
 		05B3328E18C55AB700956A79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B3328D18C55AB700956A79 /* Foundation.framework */; };
 		05B3329018C55AB700956A79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B3328F18C55AB700956A79 /* CoreGraphics.framework */; };
 		05B3329218C55AB700956A79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B3329118C55AB700956A79 /* UIKit.framework */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		0526806818C974D1008E2F6E /* MyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		0526806918C974D1008E2F6E /* MyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		059DB02818CE754500A9BC6E /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
 		05B3328A18C55AB700956A79 /* PathKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05B3328D18C55AB700956A79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05B3328F18C55AB700956A79 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,6 +96,7 @@
 		05B3329518C55AB800956A79 /* PathKitExample */ = {
 			isa = PBXGroup;
 			children = (
+				059DB02818CE754500A9BC6E /* plane.png */,
 				05B3329E18C55AB800956A79 /* AppDelegate.h */,
 				05B3329F18C55AB800956A79 /* AppDelegate.m */,
 				05B332A118C55AB800956A79 /* Main_iPhone.storyboard */,
@@ -173,6 +176,7 @@
 			files = (
 				05B332B018C55AB800956A79 /* Images.xcassets in Resources */,
 				05B332A618C55AB800956A79 /* Main_iPad.storyboard in Resources */,
+				059DB02918CE754500A9BC6E /* plane.png in Resources */,
 				05B332A318C55AB800956A79 /* Main_iPhone.storyboard in Resources */,
 				05B3329A18C55AB800956A79 /* InfoPlist.strings in Resources */,
 			);
