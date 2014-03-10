@@ -15,6 +15,7 @@
 
 @implementation PKPath
 
+// TODO: should be be a mutex?
 BOOL _useToleranceAsMaximumDistanceBusy = NO;
 
 - (id) initWithTolerance:(CGSize)tolerance {
@@ -31,27 +32,6 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
     _pathChangedBlock = pathChangedBlock;
   }
   return self;
-}
-
-/**
- Actually adds to the _points array.
- */
-- (void) actuallyAddPoint:(PKPoint *)point {
-    
-  if (self.thePoints == nil) {
-    self.thePoints = [[NSMutableArray alloc] initWithObjects:point, nil];
-  } else {
-    [self.thePoints addObject:point];
-  }
-  
-  // update the length if this is not the first point
-  if (_lastPoint != nil) {
-    _length += [PKPath distanceBetweenPoint:_lastPoint toPoint:point];
-  }
-  
-  // set the new last point
-  _lastPoint = point;
-  
 }
 
 - (CGMutablePathRef) makeCGPath {
@@ -75,6 +55,94 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
 }
 
 /**
+ * Actually adds to the _points array.  Returns whether more calls to
+ * this method are acceptable or not.  YES means there is no reason why
+ * the operation should stop, NO means there is (e.g. we have reached the
+ * maximumLength.)
+ */
+- (BOOL) actuallyAddPoint:(PKPoint *)point {
+  
+  // pointLength is the distance from the last point to this one
+  CGFloat pointLength = _lastPoint != nil ? [PKPath distanceBetweenPoint:_lastPoint toPoint:point] : 0;
+  CGFloat maxLength = [self.maximumLength floatValue];
+  BOOL hasMaxLength = (self.maximumLength != nil);
+  
+  // if there is a maximumLength, would the new length be too long?
+  CGFloat newLength = pointLength + self.length;
+  
+  BOOL shouldAddPoint = YES;
+  
+  // will this push us over the maximum?
+  if (hasMaxLength && newLength > maxLength) {
+    
+    CGFloat overshoot = newLength - maxLength;
+    PKDelta delta = [PKPath deltaFromPoint:_lastPoint toPoint:point];
+
+    if (delta.width == 0) {
+      // vertical line
+      if (delta.height < 0) {
+        point.y += overshoot;
+      } else {
+        point.y -= overshoot;
+      }
+    } else if (delta.height == 0) {
+      // horizontal line
+      if (delta.width < 0) {
+        point.x += overshoot;
+      } else {
+        point.x -= overshoot;
+      }
+    } else {
+      
+      CGFloat targetPointLength = pointLength - overshoot;
+      CGFloat scale = targetPointLength / pointLength;
+      
+      point.x = _lastPoint.x + (delta.width * scale);
+      point.y = _lastPoint.y + (delta.height * scale);
+      
+    }
+
+    shouldAddPoint = ((pointLength = [PKPath distanceBetweenPoint:_lastPoint toPoint:point]) > 0);
+    
+  }
+  
+  if (shouldAddPoint) {
+  
+    // add the point
+    if (self.thePoints == nil) {
+      self.thePoints = [[NSMutableArray alloc] initWithObjects:point, nil];
+    } else {
+      [self.thePoints addObject:point];
+    }
+    
+    // update the total length
+    _length += pointLength;
+    
+    // set the new last point
+    _lastPoint = point;
+    
+  }
+  
+  if (hasMaxLength && _length >= maxLength) {
+    
+    // maximum length has been reached
+    _maximumLengthReached = YES;
+    
+    // should we call the meximum reached block?
+    if (self.maximumLengthReachedBlock != nil) {
+      self.maximumLengthReachedBlock(self);
+    }
+    
+    // returning NO means don't call this method any
+    // more
+    return NO;
+  }
+  
+  return YES;
+  
+}
+
+/**
  * addPoint adds a new point to the path, assuming it's within tolerances.
  */
 - (BOOL) addPoint:(PKPoint *)point {
@@ -83,6 +151,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
   if (_useToleranceAsMaximumDistanceBusy) return NO;
   
   BOOL shouldCallBlock = NO;
+  BOOL canAcceptMorePoints = YES;
   
   if ([self.thePoints count] == 0) {
     // first point
@@ -93,7 +162,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
     
     _startPoint = [point copy];
     shouldCallBlock = YES;
-    [self actuallyAddPoint:point];
+    canAcceptMorePoints = [self actuallyAddPoint:point];
     
   } else {
     // subsequent points
@@ -152,7 +221,9 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
           }
           
           // add this point
-          [self actuallyAddPoint:[current copy]];
+          if (!(canAcceptMorePoints = [self actuallyAddPoint:[current copy]])) {
+            break;
+          }
           
         }
         
@@ -161,7 +232,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       } else {
         
         // just add the point - don't try to be clever
-        [self actuallyAddPoint:point];
+        canAcceptMorePoints = [self actuallyAddPoint:point];
         
       }
       
@@ -174,7 +245,7 @@ BOOL _useToleranceAsMaximumDistanceBusy = NO;
       self.pathChangedBlock(self);
   }
   
-  return YES;
+  return canAcceptMorePoints;
 }
 
 - (NSArray *) points {

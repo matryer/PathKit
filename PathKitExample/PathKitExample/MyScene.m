@@ -28,6 +28,7 @@
     // make a new path node
     _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(30, 30)];
     [_pathNode setDelegate:self];
+    [_pathNode setMaximumLength:[NSNumber numberWithFloat:200]];
     
     // setup formatting for the path
     [_pathNode setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
@@ -45,9 +46,13 @@
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   
-  // add this point
-  CGPoint touchPosition = [[touches anyObject] locationInNode:self];
-  [self.pathNode addPoint:touchPosition];
+  if (!self.pathNode.maximumLengthReached) {
+  
+    // add this point
+    CGPoint touchPosition = [[touches anyObject] locationInNode:self];
+    [self.pathNode addPoint:touchPosition];
+      
+  }
   
 }
 
@@ -60,6 +65,10 @@
 - (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
   [path setUseToleranceAsMaximumDistance:YES];
   [path setSnapStartPointToTolerance:YES];
+}
+
+- (void)pathNode:(PKPathNode *)node reachedMaximumLengthForPath:(PKPath *)path {
+  NSLog(@"Maximum length reached!");
 }
 
 @end

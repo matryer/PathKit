@@ -20,6 +20,7 @@
 		0526806118C92ABC008E2F6E /* PKPathNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806018C92ABC008E2F6E /* PKPathNode.m */; };
 		0526806718C939C0008E2F6E /* TestPKPathNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */; };
 		0526806D18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806C18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m */; };
+		059DB02518CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DB02418CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m */; };
 		05B3327F18C557DE00956A79 /* PKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3327E18C557DE00956A79 /* PKPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +75,9 @@
 		0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegate.m; sourceTree = "<group>"; };
 		0526806B18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPKPathNodeDelegateProvidingCGPath.h; sourceTree = "<group>"; };
 		0526806C18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegateProvidingCGPath.m; sourceTree = "<group>"; };
-		05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathChangedBlock.h; sourceTree = "<group>"; };
+		059DB02318CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPKPathNodeDelegateMaxLength.h; sourceTree = "<group>"; };
+		059DB02418CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegateMaxLength.m; sourceTree = "<group>"; };
+		05B3327C18C54AFD00956A79 /* PKBlockEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKBlockEvents.h; sourceTree = "<group>"; };
 		05B3327D18C557DE00956A79 /* PKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPoint.h; sourceTree = "<group>"; };
 		05B3327E18C557DE00956A79 /* PKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPoint.m; sourceTree = "<group>"; };
 		05B3328018C5589E00956A79 /* PKPathKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPathKit.h; sourceTree = "<group>"; };
@@ -178,7 +181,7 @@
 			children = (
 				0509AA8318C546F500C43E15 /* PKPath.h */,
 				0509AA8418C546F500C43E15 /* PKPath.m */,
-				05B3327C18C54AFD00956A79 /* PKPathChangedBlock.h */,
+				05B3327C18C54AFD00956A79 /* PKBlockEvents.h */,
 				05B3327D18C557DE00956A79 /* PKPoint.h */,
 				05B3327E18C557DE00956A79 /* PKPoint.m */,
 			);
@@ -212,6 +215,8 @@
 				0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */,
 				0526806B18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.h */,
 				0526806C18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m */,
+				059DB02318CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.h */,
+				059DB02418CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m */,
 			);
 			name = SpriteKit;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				0509AA7A18C544C600C43E15 /* PKPathTests.m in Sources */,
 				0526805E18C92A48008E2F6E /* PKPathNodeTests.m in Sources */,
 				0526805318C7BDB0008E2F6E /* PKPointTests.m in Sources */,
+				059DB02518CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

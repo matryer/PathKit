@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "PKPathKit.h"
+#import "PKBlockEvents.h"
 
 @interface PKPathTests : XCTestCase
 
@@ -392,6 +393,177 @@
   [path addPoint:PKPointMake(0, 0)];
   XCTAssertEqual((CGFloat)80, path.length);
 
+}
+
+- (void)testMaximumLength {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+
+  [path addPoint:PKPointMake(100, 0)];
+  XCTAssertEqual((CGFloat)100, path.length);
+
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  
+}
+
+- (void)testMaximumLengthDisallowsOvershoot {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(10, 10)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+  
+  [path addPoint:PKPointMake(50, 0)];
+  XCTAssertEqual((CGFloat)50, path.length);
+  
+  [path addPoint:PKPointMake(115, 0)];
+  XCTAssertEqual((CGFloat)100, path.length);
+  
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  
+}
+
+
+- (void)testMaximumLengthDisallowsOvershootWithLowTolerance {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(1, 1)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+  
+  [path addPoint:PKPointMake(50, 0)];
+  XCTAssertEqual((CGFloat)50, path.length);
+  
+  [path addPoint:PKPointMake(115, 0)];
+  XCTAssertEqual((CGFloat)100, path.length);
+  
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  
+}
+
+- (void)testMaximumLengthDisallowsOvershootWithNonStrictToleranceHoriz {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(10, 10)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+  [path setUseToleranceAsMaximumDistance:NO];
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+  
+  XCTAssertTrue([path addPoint:PKPointMake(50, 0)]);
+  XCTAssertEqual((CGFloat)50, path.length);
+  
+  XCTAssertFalse([path addPoint:PKPointMake(120, 0)]);
+  XCTAssertEqual((CGFloat)100, path.length);
+  
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  XCTAssertTrue(path.maximumLengthReached);
+  
+}
+
+- (void)testMaximumLengthDisallowsOvershootWithNonStrictToleranceVert {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(10, 10)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+  [path setUseToleranceAsMaximumDistance:NO];
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+  
+  XCTAssertTrue([path addPoint:PKPointMake(0, 50)]);
+  XCTAssertEqual((CGFloat)50, path.length);
+  
+  XCTAssertFalse([path addPoint:PKPointMake(0, 120)]);
+  XCTAssertEqual((CGFloat)100, path.length);
+  
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  XCTAssertTrue(path.maximumLengthReached);
+  
+}
+
+- (void)testMaximumLengthDisallowsOvershootWithNonStrictToleranceNonHorizNonVert {
+  
+  PKPath *path = [[PKPath alloc] initWithTolerance:CGSizeMake(10, 10)];
+  [path setMaximumLength:[NSNumber numberWithFloat:100]];
+  [path setUseToleranceAsMaximumDistance:NO];
+  
+  __block NSInteger blockCallCount = 0;
+  __block PKPath *blockPath = nil;
+  PKPathMaximumLengthReachedBlock block = ^(PKPath* thePath){
+    blockPath = thePath;
+    blockCallCount++;
+  };
+  
+  [path setMaximumLengthReachedBlock:block];
+  
+  [path addPoint:PKPointMake(0, 0)];
+  XCTAssertEqual((CGFloat)0, path.length);
+  
+  XCTAssertTrue([path addPoint:PKPointMake(50, 50)]);
+  XCTAssertEqual((float)70, floorf(path.length));
+  
+  XCTAssertFalse([path addPoint:PKPointMake(120, 120)]);
+  XCTAssertEqual((CGFloat)100, path.length);
+  
+  XCTAssertEqual(blockCallCount, (NSInteger)1, @"PKPathMaximumLengthReachedBlock should have been called");
+  XCTAssertEqualObjects(path, blockPath);
+  XCTAssertTrue(path.maximumLengthReached);
+  
 }
 
 @end

@@ -26,6 +26,16 @@
 @property (assign, readwrite) id<PKPathNodeDelegate> delegate;
 
 /**
+ * Gets or sets the maximum length allowed for paths.
+ */
+@property (strong, readwrite) NSNumber *maximumLength;
+
+/**
+ * Gets whether the maximum length has been reached or not.
+ */
+@property (assign, readonly) BOOL maximumLengthReached;
+
+/**
  * Adds a CGPoint to the path.
  */
 - (void) addPoint:(CGPoint)point;
