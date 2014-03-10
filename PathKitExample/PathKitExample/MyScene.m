@@ -26,12 +26,14 @@
     [self addChild:myLabel];
     
     // make a new path node
-    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(30, 30)];
+    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(5, 5)];
     [_pathNode setDelegate:self];
     [_pathNode setMaximumLength:[NSNumber numberWithFloat:2000]];
     
     // setup formatting for the path
     [_pathNode setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
+    [_pathNode setLineWidth:1];
+    [_pathNode setGlowWidth:0];
     
     [self addChild:_pathNode];
     
@@ -46,6 +48,7 @@
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   
+  // are we still within our maximum?
   if (!self.pathNode.maximumLengthReached) {
   
     // add this point
