@@ -28,7 +28,7 @@
     // make a new path node
     _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(30, 30)];
     [_pathNode setDelegate:self];
-    [_pathNode setMaximumLength:[NSNumber numberWithFloat:200]];
+    [_pathNode setMaximumLength:[NSNumber numberWithFloat:2000]];
     
     // setup formatting for the path
     [_pathNode setStrokeColor:[UIColor colorWithWhite:1.0 alpha:0.5]];
@@ -63,12 +63,18 @@
 #pragma mark - PKPathNodeDelegate
 
 - (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
+  
+  NSLog(@"A new PKPathNode has been created - let's configure it");
+  
   [path setUseToleranceAsMaximumDistance:YES];
   [path setSnapStartPointToTolerance:YES];
+  
 }
 
 - (void)pathNode:(PKPathNode *)node reachedMaximumLengthForPath:(PKPath *)path {
+  
   NSLog(@"Maximum length reached!");
+  
 }
 
 @end
