@@ -18,7 +18,6 @@
 		05B332A318C55AB800956A79 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B332A118C55AB800956A79 /* Main_iPhone.storyboard */; };
 		05B332A618C55AB800956A79 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05B332A418C55AB800956A79 /* Main_iPad.storyboard */; };
 		05B332A918C55AB800956A79 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B332A818C55AB800956A79 /* ViewController.m */; };
-		05B332AE18C55AB800956A79 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B332AD18C55AB800956A79 /* Spaceship.png */; };
 		05B332B018C55AB800956A79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05B332AF18C55AB800956A79 /* Images.xcassets */; };
 		05B332D618C55B1300956A79 /* libPathKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05B332D518C55B1300956A79 /* libPathKit.a */; };
 /* End PBXBuildFile section */
@@ -41,7 +40,6 @@
 		05B332A518C55AB800956A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		05B332A718C55AB800956A79 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		05B332A818C55AB800956A79 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		05B332AD18C55AB800956A79 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		05B332AF18C55AB800956A79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05B332B618C55AB800956A79 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		05B332D518C55B1300956A79 /* libPathKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPathKit.a; path = "../build/Debug-iphoneos/libPathKit.a"; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				05B332A818C55AB800956A79 /* ViewController.m */,
 				0526806818C974D1008E2F6E /* MyScene.h */,
 				0526806918C974D1008E2F6E /* MyScene.m */,
-				05B332AD18C55AB800956A79 /* Spaceship.png */,
 				05B332AF18C55AB800956A79 /* Images.xcassets */,
 				05B3329618C55AB800956A79 /* Supporting Files */,
 			);
@@ -174,7 +171,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05B332AE18C55AB800956A79 /* Spaceship.png in Resources */,
 				05B332B018C55AB800956A79 /* Images.xcassets in Resources */,
 				05B332A618C55AB800956A79 /* Main_iPad.storyboard in Resources */,
 				05B332A318C55AB800956A79 /* Main_iPhone.storyboard in Resources */,
