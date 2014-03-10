@@ -76,6 +76,7 @@
   
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
   SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:self.pathNode.pkPath.length / 100];
+  [followPath setTimingMode:SKActionTimingEaseInEaseOut];
   
   // add the plane
   [self addChild:self.plane];
