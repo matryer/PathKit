@@ -80,6 +80,7 @@
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
   NSTimeInterval duration = self.pathNode.pkPath.length / 50;
   SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:duration];
+  CGPathRelease(path);
   [followPath setTimingMode:SKActionTimingEaseInEaseOut];
   
   // add the plane
@@ -97,7 +98,9 @@
  */
 - (CGPathRef)pathNode:(PKPathNode *)node makeCGPathForPKPath:(PKPath *)path {
   
-  UIBezierPath *p = [UIBezierPath bezierPathWithCGPath:[self.pathNode.pkPath makeCGPath]];
+  CGPathRef cgpath = [self.pathNode.pkPath makeCGPath];
+  UIBezierPath *p = [UIBezierPath bezierPathWithCGPath:cgpath];
+  CGPathRelease(cgpath);
   return [p smoothedPath:5].CGPath;
   
 }

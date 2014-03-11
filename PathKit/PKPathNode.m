@@ -27,7 +27,7 @@
 }
 
 - (void)dealloc {
-  [self ensurePathReleased];
+  self.path = nil;
 }
 
 - (CGPoint) startPoint {
@@ -79,10 +79,9 @@
 }
 
 - (void)pathChanged:(PKPath *)path {
-
-  [self ensurePathReleased];
   
   // create a new path - and set it
+  self.path = nil;
   self.path = [self makeCGPath];
   
 }
@@ -97,14 +96,6 @@
   return self.pkPath.maximumLengthReached;
 }
 
-- (void)ensurePathReleased {
-  // release and clear existing path
-  if (self.path != nil) {
-    CGPathRelease(self.path);
-    self.path = nil;
-  }
-}
-
 - (void)addPoint:(CGPoint)point {
   [self.pkPath addPoint:PKPointMake(point.x, point.y)];
 }
@@ -114,7 +105,7 @@
 }
 
 - (void)clearPath {
-  [self ensurePathReleased];
+  self.path = nil;
   self._pkpath = nil;
 }
 
