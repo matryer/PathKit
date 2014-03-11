@@ -54,7 +54,7 @@
  * Makes a new CGPath and returns the CGMutablePathRef it created.
  *
  * Even in ARC, it is the responsibility of calling code to call CGPathRelease on the
- * return to ensure the path is released properly.
+ * return to ensure the path is released properly when it is finished being used.
  */
 - (CGMutablePathRef) makeCGPath;
 
