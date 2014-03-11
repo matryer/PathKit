@@ -99,7 +99,7 @@
 - (CGPathRef)pathNode:(PKPathNode *)node makeCGPathForPKPath:(PKPath *)path {
   
   UIBezierPath *p = [UIBezierPath bezierPathWithCGPath:[self.pathNode.pkPath makeCGPath]];
-  return [p smoothedPath:2].CGPath;
+  return [p smoothedPath:5].CGPath;
   
 }
 
@@ -110,7 +110,7 @@
   
   NSLog(@"A new PKPathNode has been created - let's configure it");
   
-  [path setUseToleranceAsMaximumDistance:YES];
+  [path setUseToleranceAsMaximumDistance:NO];
   [path setSnapStartPointToTolerance:YES];
   
 }
