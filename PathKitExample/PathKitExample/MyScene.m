@@ -74,9 +74,9 @@
   // get a plane and make it fly the path
   if (self.plane == nil) {
     self.plane = [SKSpriteNode spriteNodeWithImageNamed:@"plane"];
+    [self.plane setScale:0.35];
   }
   
-  [self.plane setScale:0.1];
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
   NSTimeInterval duration = self.pathNode.pkPath.length / 50;
   SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:duration];
@@ -86,7 +86,6 @@
   [self addChild:self.plane];
   
   [self.plane runAction:followPath];
-  [self.plane runAction:[SKAction scaleTo:1 duration:2]];
 
 }
 
