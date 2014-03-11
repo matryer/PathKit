@@ -11,8 +11,8 @@
 
 @interface TestPKPathNodeDelegate : NSObject <PKPathNodeDelegate>
 
-@property (copy, readonly) NSString *lastMethod;
-@property (strong, readonly) NSArray *lastArgs;
+@property (copy, readonly) NSMutableArray *methods;
+@property (strong, readonly) NSMutableArray *lastArgs;
 
 - (void)reset;
 

@@ -117,6 +117,10 @@
   
 }
 
+- (void)pathNode:(PKPathNode *)node didChangePath:(PKPath *)path {
+  NSLog(@"Path did change - now %d points.", [path.points count]);
+}
+
 /**
  * We've reached the maximum length
  */

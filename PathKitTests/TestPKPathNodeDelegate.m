@@ -19,13 +19,18 @@
 }
 
 - (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
-  _lastMethod = @"pathNode:didCreateNewPath:";
-  _lastArgs = [NSArray arrayWithObjects:node, path, nil];
+  [_methods addObject:@"pathNode:didCreateNewPath:"];
+  [_lastArgs addObject:[NSArray arrayWithObjects:node, path, nil]];
+}
+
+- (void)pathNode:(PKPathNode *)node didChangePath:(PKPath *)path {
+  [_methods addObject:@"pathNode:didChangePath:"];
+  [_lastArgs addObject:[NSArray arrayWithObjects:node, path, nil]];
 }
 
 - (void)reset {
-  _lastMethod = @"";
-  _lastArgs = [NSArray arrayWithObjects:nil];
+  _methods = [[NSMutableArray alloc] init];
+  _lastArgs = [[NSMutableArray alloc] init];
 }
 
 @end

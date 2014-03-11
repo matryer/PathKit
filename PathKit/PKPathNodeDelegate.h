@@ -23,6 +23,11 @@
 - (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path;
 
 /**
+ * Called whenever the path changes.
+ */
+- (void)pathNode:(PKPathNode *)node didChangePath:(PKPath *)path;
+
+/**
  * Will be called when the PKNodePath needs a CGPathRef for the
  * specified path.  Otherwise, the default path joining all points will be used.
  *

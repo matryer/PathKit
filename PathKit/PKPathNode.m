@@ -84,6 +84,11 @@
   self.path = nil;
   self.path = [self makeCGPath];
   
+  // tell the delegate
+  if ([self.delegate respondsToSelector:@selector(pathNode:didChangePath:)]) {
+    [self.delegate pathNode:self didChangePath:path];
+  }
+  
 }
 
 - (void)reachedMaximumLengthForPath:(PKPath*)path {

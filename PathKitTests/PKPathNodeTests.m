@@ -44,9 +44,9 @@
   // a path should have been created
   XCTAssertNotNil(path);
   XCTAssertEqual([path.maximumLength floatValue], (float)100);
-  XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", delegate.lastMethod);
-  XCTAssertEqualObjects(pathNode, [delegate.lastArgs objectAtIndex:0]);
-  XCTAssertEqualObjects(path, [delegate.lastArgs objectAtIndex:1]);
+  XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", [delegate.methods objectAtIndex:0]);
+  XCTAssertEqualObjects(pathNode, [[delegate.lastArgs objectAtIndex:0] objectAtIndex:0]);
+  XCTAssertEqualObjects(path, [[delegate.lastArgs objectAtIndex:0] objectAtIndex:1]);
   
   // set the path
   PKPath *path2 = [[PKPath alloc] initWithTolerance:CGSizeMake(5, 5)];
@@ -72,8 +72,9 @@
   CGPathRef pathRef = pathNode.path;
   
   if (pathRef) {
-  XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", delegate.lastMethod);
-  XCTAssertEqualObjects(pathNode, [delegate.lastArgs objectAtIndex:0]);
+
+  XCTAssertEqualObjects(@"pathNode:didCreateNewPath:", [delegate.methods objectAtIndex:0]);
+  XCTAssertEqualObjects(pathNode, [[delegate.lastArgs objectAtIndex:0] objectAtIndex:0]);
   XCTAssertEqual((NSUInteger)1, [pathNode.pkPath.points count]);
 
   // reset the test delegate
@@ -90,6 +91,28 @@
     
   }
   
+}
+
+- (void)testDidChangePathDelegateCall {
+  
+  TestPKPathNodeDelegate *delegate = [[TestPKPathNodeDelegate alloc] init];
+  PKPathNode *pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(5,5)];
+  [pathNode setDelegate:delegate];
+  
+  // set the first point
+  [pathNode addPoint:CGPointMake(50, 50)];
+  
+  XCTAssertEqualObjects(@"pathNode:didChangePath:", [delegate.methods objectAtIndex:1]);
+  XCTAssertEqualObjects(pathNode, [[delegate.lastArgs objectAtIndex:1] objectAtIndex:0]);
+
+  [delegate reset];
+  
+  // set another point
+  [pathNode addPoint:CGPointMake(70, 70)];
+  
+  XCTAssertEqualObjects(@"pathNode:didChangePath:", [delegate.methods objectAtIndex:0]);
+  XCTAssertEqualObjects(pathNode, [[delegate.lastArgs objectAtIndex:0] objectAtIndex:0]);
+
 }
 
 - (void)testMakeCGPathForPKPath {

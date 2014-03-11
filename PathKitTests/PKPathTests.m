@@ -357,7 +357,7 @@
   
   // diagonal
   length = [PKPath distanceBetweenPoint:PKPointMake(0, 0) toPoint:PKPointMake(10, 10)];
-  XCTAssertEqual((CGFloat)14, round(length));
+  XCTAssertEqual((float)14, roundf(length));
   
   // x from non-zero
   length = [PKPath distanceBetweenPoint:PKPointMake(10, 10) toPoint:PKPointMake(20, 10)];
