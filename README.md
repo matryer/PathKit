@@ -1,13 +1,13 @@
 PathKit
 =======
 
-PathKit provides path drawing capabilities for iOS SpriteKit.
+PathKit provides path drawing and utilisation capabilities for iOS SpriteKit.
 
 ![Example of PathKit in action](Example.png)
 
 ## Overview
 
-PathKit lets your users draw paths with their finger.
+PathKit lets your users draw paths with their finger.  You can then use the points of the path in your code, or make use of the CGPath capabilities built-in.
 
 ### Typical usage
 
