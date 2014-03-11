@@ -309,6 +309,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathKitExample/PathKitExample-Prefix.pch";
 				INFOPLIST_FILE = "PathKitExample/PathKitExample-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				USER_HEADER_SEARCH_PATHS = "../**";
@@ -325,6 +326,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathKitExample/PathKitExample-Prefix.pch";
 				INFOPLIST_FILE = "PathKitExample/PathKitExample-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				USER_HEADER_SEARCH_PATHS = "../**";

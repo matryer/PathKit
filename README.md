@@ -101,3 +101,7 @@ Setting `useToleranceAsMaximumDistance` to `YES` will mean that no two points in
 #### snapStartPointToTolerance = YES
 
 Settings `snapStartPointToTolerance` to `YES` will cause the start point to be snapped to the nearest grid point as specified by the tolerance size.  This ensures that your paths will strictly adhear to the grid.
+
+## Troubleshooting
+
+If you're getting `unrecognized selector sent to instance` for `UIBezierPath smoothedPath`, you need to make sure you have set `-all_load` in the *Other Linker Flags* build setting.

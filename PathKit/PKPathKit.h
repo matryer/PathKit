@@ -14,5 +14,6 @@
 #import "PKPath.h"
 #import "PKPathNode.h"
 #import "PKPathNodeDelegate.h"
+#import "UIBezierPath+Smoothing.h"
 
 #endif

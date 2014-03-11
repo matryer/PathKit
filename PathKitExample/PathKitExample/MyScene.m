@@ -7,6 +7,7 @@
 //
 
 #import "MyScene.h"
+#import "PathKit/UIBezierPath+Smoothing.h"
 
 @implementation MyScene
 
@@ -27,14 +28,15 @@
     [self addChild:myLabel];
     
     // make a new path node
-    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(20, 20)];
+    _pathNode = [[PKPathNode alloc] initWithTolerance:CGSizeMake(10, 10)];
     [_pathNode setDelegate:self];
     [_pathNode setMaximumLength:[NSNumber numberWithFloat:2000]];
     
     // setup formatting for the path
     [_pathNode setStrokeColor:[UIColor blackColor]];
     [_pathNode setLineWidth:1];
-    [_pathNode setGlowWidth:0];
+    [_pathNode setGlowWidth:2];
+    [_pathNode setAntialiased:NO];
     
     [self addChild:_pathNode];
     
@@ -82,14 +84,28 @@
   
   // add the plane
   [self addChild:self.plane];
- 
+  
   [self.plane runAction:followPath];
   [self.plane runAction:[SKAction scaleTo:1 duration:2]];
-  
+
 }
 
 #pragma mark - PKPathNodeDelegate
 
+/**
+ * Explicitly providing this methods allows user code to generate the path
+ * in any way they like.
+ */
+- (CGPathRef)pathNode:(PKPathNode *)node makeCGPathForPKPath:(PKPath *)path {
+  
+  UIBezierPath *p = [UIBezierPath bezierPathWithCGPath:[self.pathNode.pkPath makeCGPath]];
+  return [p smoothedPath:2].CGPath;
+  
+}
+
+/**
+ * Configure the path
+ */
 - (void)pathNode:(PKPathNode *)node didCreateNewPath:(PKPath *)path {
   
   NSLog(@"A new PKPathNode has been created - let's configure it");
@@ -99,6 +115,9 @@
   
 }
 
+/**
+ * We've reached the maximum length
+ */
 - (void)pathNode:(PKPathNode *)node reachedMaximumLengthForPath:(PKPath *)path {
   
   NSLog(@"Maximum length reached!");

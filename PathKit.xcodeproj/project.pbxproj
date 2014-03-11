@@ -21,6 +21,8 @@
 		0526806718C939C0008E2F6E /* TestPKPathNodeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806618C939C0008E2F6E /* TestPKPathNodeDelegate.m */; };
 		0526806D18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0526806C18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m */; };
 		059DB02518CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DB02418CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m */; };
+		059DB03018CEB4FD00A9BC6E /* UIBezierPath+Points.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DB02F18CEB4FD00A9BC6E /* UIBezierPath+Points.m */; };
+		059DB03318CEB53400A9BC6E /* UIBezierPath+Smoothing.m in Sources */ = {isa = PBXBuildFile; fileRef = 059DB03218CEB53400A9BC6E /* UIBezierPath+Smoothing.m */; };
 		05B3327F18C557DE00956A79 /* PKPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3327E18C557DE00956A79 /* PKPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,10 @@
 		0526806C18C97BD0008E2F6E /* TestPKPathNodeDelegateProvidingCGPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegateProvidingCGPath.m; sourceTree = "<group>"; };
 		059DB02318CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPKPathNodeDelegateMaxLength.h; sourceTree = "<group>"; };
 		059DB02418CE6E1E00A9BC6E /* TestPKPathNodeDelegateMaxLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPKPathNodeDelegateMaxLength.m; sourceTree = "<group>"; };
+		059DB02E18CEB4FD00A9BC6E /* UIBezierPath+Points.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Points.h"; sourceTree = "<group>"; };
+		059DB02F18CEB4FD00A9BC6E /* UIBezierPath+Points.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Points.m"; sourceTree = "<group>"; };
+		059DB03118CEB53400A9BC6E /* UIBezierPath+Smoothing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Smoothing.h"; sourceTree = "<group>"; };
+		059DB03218CEB53400A9BC6E /* UIBezierPath+Smoothing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Smoothing.m"; sourceTree = "<group>"; };
 		05B3327C18C54AFD00956A79 /* PKBlockEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKBlockEvents.h; sourceTree = "<group>"; };
 		05B3327D18C557DE00956A79 /* PKPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPoint.h; sourceTree = "<group>"; };
 		05B3327E18C557DE00956A79 /* PKPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPoint.m; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				05B3328018C5589E00956A79 /* PKPathKit.h */,
+				059DB02C18CEB4B800A9BC6E /* Extensions */,
 				0526806218C92B5D008E2F6E /* Common */,
 				0526805818C92959008E2F6E /* SpriteKit */,
 				0509AA6018C544C600C43E15 /* Supporting Files */,
@@ -227,6 +234,25 @@
 				0526806318C92B79008E2F6E /* PKCommon.h */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		059DB02A18CEB4A600A9BC6E /* UIBezierPath */ = {
+			isa = PBXGroup;
+			children = (
+				059DB02E18CEB4FD00A9BC6E /* UIBezierPath+Points.h */,
+				059DB02F18CEB4FD00A9BC6E /* UIBezierPath+Points.m */,
+				059DB03118CEB53400A9BC6E /* UIBezierPath+Smoothing.h */,
+				059DB03218CEB53400A9BC6E /* UIBezierPath+Smoothing.m */,
+			);
+			name = UIBezierPath;
+			sourceTree = "<group>";
+		};
+		059DB02C18CEB4B800A9BC6E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				059DB02A18CEB4A600A9BC6E /* UIBezierPath */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		05B332CD18C55AB800956A79 /* Products */ = {
@@ -336,7 +362,9 @@
 			files = (
 				0509AA8518C546F500C43E15 /* PKPath.m in Sources */,
 				0526806118C92ABC008E2F6E /* PKPathNode.m in Sources */,
+				059DB03018CEB4FD00A9BC6E /* UIBezierPath+Points.m in Sources */,
 				05B3327F18C557DE00956A79 /* PKPoint.m in Sources */,
+				059DB03318CEB53400A9BC6E /* UIBezierPath+Smoothing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +479,10 @@
 				DSTROOT = /tmp/PathKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathKit/PathKit-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -463,7 +494,10 @@
 				DSTROOT = /tmp/PathKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathKit/PathKit-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
