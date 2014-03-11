@@ -75,6 +75,8 @@
   if (self.plane == nil) {
     self.plane = [SKSpriteNode spriteNodeWithImageNamed:@"plane"];
     [self.plane setScale:0.35];
+  } else {
+    [self.plane removeAllActions];
   }
   
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
@@ -87,7 +89,7 @@
   [self addChild:self.plane];
   
   [self.plane runAction:followPath];
-
+  
 }
 
 #pragma mark - PKPathNodeDelegate
