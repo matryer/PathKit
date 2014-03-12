@@ -82,7 +82,7 @@
   CGPathRef path = [self.pathNode.pkPath makeCGPath];
   NSTimeInterval duration = self.pathNode.pkPath.length / 50;
   SKAction *followPath = [SKAction followPath:path asOffset:NO orientToPath:YES duration:duration];
-  CGPathRelease(path);
+  //CGPathRelease(path); // TODO: Analyze doens't like this, but then it leaks https://github.com/matryer/PathKit/issues/10
   [followPath setTimingMode:SKActionTimingEaseInEaseOut];
   
   // add the plane
@@ -102,7 +102,7 @@
   
   CGPathRef cgpath = [self.pathNode.pkPath makeCGPath];
   UIBezierPath *p = [UIBezierPath bezierPathWithCGPath:cgpath];
-  CGPathRelease(cgpath);
+  //CGPathRelease(cgpath); // TODO: Analyze doens't like this, but then it leaks https://github.com/matryer/PathKit/issues/10
   return [p smoothedPath:5].CGPath;
   
 }
@@ -120,7 +120,7 @@
 }
 
 - (void)pathNode:(PKPathNode *)node didChangePath:(PKPath *)path {
-  NSLog(@"Path did change - now %d points.", [path.points count]);
+  NSLog(@"Path did change - now %lu points.", (unsigned long)[path.points count]);
 }
 
 /**
